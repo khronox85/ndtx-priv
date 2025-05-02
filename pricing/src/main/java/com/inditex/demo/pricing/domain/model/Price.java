@@ -6,9 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
-
 import java.time.LocalDateTime;
+import lombok.Data;
 
 @Entity
 @Table(name = "PRICES")
@@ -30,16 +29,16 @@ public class Price {
   private LocalDateTime endDate;
 
   @Column(name = "PRICE_LIST")
-  private Long priceList;
+  private Long priceListId;
 
   @Column(name = "PRODUCT_ID")
   private Long productId;
 
   @Column(name = "PRIORITY")
-  private Long priority;
+  private Integer priority;
 
   @Column(name = "PRICE")
-  private Double price;
+  private Double productPrice;
 
   @Column(name = "CURR")
   private String curr;

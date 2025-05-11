@@ -15,9 +15,23 @@ Application using the Spring Boot framework that provides a REST access point fo
 * Swagger
 * Jacoco
 
+## Architecture
+
+I applied a simplified Hexagonal Architecture, organizing the project into Domain, Application, and Infrastructure layers to separate business logic from technical concerns and improve maintainability.
+
+Using DDD helped structure the core logic around real business concepts, ensuring clarity and alignment with requirements. Together, this approach makes the system easier to test, evolve, and understand.
+
+### Modules
+
+For simplicity, instead of using modules, which would be more convenient, I used packages to simulate the module structure the project would have:
+
+* **Domain**: Contains the Price entity, which represents the PRICES table in the database, as well as the PriceRepository interface used to query pricing information.
+* **Application**: Contains the main use case responsible for returning the price based on brandId, productId, and applicationDate. It maps the result to a DTO to decouple the output from the internal data model.
+* **Infrastructure**: Contains the REST controller, which uses a mapper to return a simplified DTO with only the necessary information and a ControllerAdvice to handle exceptions centrally.
+
 ## Execution
 
-With Java 21 you can run the jar attached to the project with "java -jar ./pricing-1.0.0.jar"
+With Java 21 you can run the jar attached to the project with "java -jar ./pricing-1.1.0.jar"
 
 ## Usage
 
@@ -29,7 +43,9 @@ Once the application is launched, the service can be used via:
 ## Repository
 
 * Project: https://github.com/khronox85/ndtx-priv
-* PR: https://github.com/khronox85/ndtx-priv/pull/1
+* PRs: 
+  * https://github.com/khronox85/ndtx-priv/pull/1
+  * https://github.com/khronox85/ndtx-priv/pull/2
 
 ## Additional comments
 

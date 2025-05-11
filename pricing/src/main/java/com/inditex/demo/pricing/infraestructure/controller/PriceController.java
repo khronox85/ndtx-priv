@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RequiredArgsConstructor
 public class PriceController {
-
   private final GetProductPriceInDateUseCase getProductPriceInDateUseCase;
-
   private final RestPriceMapper restPriceMapper;
 
   @GetMapping
@@ -33,7 +31,6 @@ public class PriceController {
       @RequestParam @NotNull final Long productId,
       @Parameter(name = "brandId", description = "Brand identifier", example = "1")
       @RequestParam @NotNull final Long brandId) {
-
       return ResponseEntity.ok(this.restPriceMapper
           .asRestPriceDto(
               this.getProductPriceInDateUseCase.execute(applicationDate, productId, brandId)));

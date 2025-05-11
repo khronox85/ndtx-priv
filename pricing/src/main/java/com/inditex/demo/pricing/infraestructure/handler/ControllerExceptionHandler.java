@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
-
   private static final String UNEXPECTED_ERROR = "An unexpected error occurred, please contact support team";
 
   @ExceptionHandler({EntityNotFoundException.class})
@@ -23,6 +23,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler({Exception.class})
   public ResponseEntity<Object> handleGenericException(final Exception exception) {
     return new ResponseEntity<>(this.buildResponseBody(UNEXPECTED_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+  public ResponseEntity<Object> handleBadRequestExceptions(Exception ex) {
+    return new ResponseEntity<>(this.buildResponseBody(ex.getMessage()), HttpStatus.BAD_REQUEST);
   }
 
   private Map<String, Object> buildResponseBody(final String message) {

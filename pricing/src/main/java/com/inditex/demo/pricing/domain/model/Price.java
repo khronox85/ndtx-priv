@@ -13,7 +13,6 @@ import lombok.Data;
 @Table(name = "PRICES")
 @Data
 public class Price {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "PRICE_ID")

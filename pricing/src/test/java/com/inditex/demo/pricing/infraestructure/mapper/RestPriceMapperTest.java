@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import com.inditex.demo.pricing.domain.model.dto.PriceDto;
+import com.inditex.demo.pricing.application.dto.PriceDto;
 import com.inditex.demo.pricing.infraestructure.dto.RestPriceDto;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class RestPriceMapperTest {
-
   private RestPriceMapper mapper;
 
   @BeforeEach

@@ -1,8 +1,7 @@
-package com.inditex.demo.pricing.handler;
+package com.inditex.demo.pricing.infraestructure.handler;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inditex.demo.pricing.infraestructure.handler.ControllerExceptionHandler;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
 class ControllerExceptionHandlerTest {
-
   private ControllerExceptionHandler exceptionHandler;
 
   @BeforeEach

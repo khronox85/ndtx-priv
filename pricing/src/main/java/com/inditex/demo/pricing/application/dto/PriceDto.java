@@ -1,4 +1,4 @@
-package com.inditex.demo.pricing.domain.model.dto;
+package com.inditex.demo.pricing.application.dto;
 
 import java.time.LocalDateTime;
 

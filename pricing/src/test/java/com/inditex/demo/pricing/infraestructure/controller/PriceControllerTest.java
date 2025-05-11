@@ -4,12 +4,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.inditex.demo.pricing.application.usecase.GetProductPriceInDateUseCase;
-import com.inditex.demo.pricing.infraestructure.mapper.RestPriceMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,15 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 class PriceControllerTest {
-
   @Autowired
   private MockMvc mockMvc;
-
-  @Mock
-  private GetProductPriceInDateUseCase getProductPriceInDateUseCase;
-
-  @Mock
-  private RestPriceMapper restPriceMapper;
 
   // Requested tests
   @ParameterizedTest
@@ -50,8 +40,11 @@ class PriceControllerTest {
   @ParameterizedTest
   @CsvSource({", 35455, 1",
       "2020-06-14T16:00:00, , 1",
-      "2020-06-14T21:00:00, 35455, "})
-  void shouldReturn400WhenAnyParamIsMissed(String appDate, String productId, String brandId) throws Exception {
+      "2020-06-14T21:00:00, 35455, ",
+      "BadDateFormat, 35455, 1",
+      "2020-06-14T21:00:00, BadNumberFormat, 1",
+      "2020-06-14T21:00:00, 35455, BadNumberFormat"})
+  void shouldReturn400WhenAnyParamMissedOrBadFormat(String appDate, String productId, String brandId) throws Exception {
     mockMvc.perform(get("/price")
             .param("applicationDate", appDate)
             .param("productId", productId)
@@ -67,5 +60,4 @@ class PriceControllerTest {
             .param("brandId", "11"))
         .andExpect(status().isNotFound());
   }
-
 }
